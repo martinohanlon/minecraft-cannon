@@ -2,9 +2,9 @@
 #Raspberry Pi, Minecraft Cannon
 
 #import the minecraft.py module from the minecraft directory
-import minecraft.minecraft as minecraft
+import mcpi.minecraft as minecraft
 #import minecraft block module
-import minecraft.block as block
+import mcpi.block as block
 #import time, so delays can be used
 import time
 #import math, so we can use sin, cos and other maths functions
@@ -35,12 +35,12 @@ class MinecraftDrawing:
         self.mc = mc
 
     # draw point
-    def drawPoint3d(self, x, y, z, blockType, blockData=None):
+    def drawPoint3d(self, x, y, z, blockType, blockData=0):
         self.mc.setBlock(x,y,z,blockType,blockData)
         #print "x = " + str(x) + ", y = " + str(y) + ", z = " + str(z)
 
     # draws a sphere
-    def drawSphere(self, vec3, radius, blockType, blockData=None):
+    def drawSphere(self, vec3, radius, blockType, blockData=0):
     # if the diameter is greater than 1, create a sphere, ot
         if radius * 2.0 > 1.5:
             #round up radius
@@ -54,7 +54,7 @@ class MinecraftDrawing:
             self.drawPoint3d(vec3.x, vec3.z, vec3.y, blockType, blockData)
 
     # draws a face, when passed a collection of vertices which make up a polyhedron
-    def drawFace(self, vertices, blockType, blockData=None):
+    def drawFace(self, vertices, blockType, blockData=0):
         
         # get the edges of the face
         edgesVertices = []
@@ -91,12 +91,12 @@ class MinecraftDrawing:
             lastVertex = vertex
         
     # draw's all the points in a collection of vertices with a block
-    def drawVertices(self, vertices, blockType, blockData=None):
+    def drawVertices(self, vertices, blockType, blockData=0):
         for vertex in vertices:
             self.drawPoint3d(vertex.x, vertex.y, vertex.z, blockType, blockData)
 
     # draw line
-    def drawLine(self, x1, y1, z1, x2, y2, z2, blockType, blockData=None):
+    def drawLine(self, x1, y1, z1, x2, y2, z2, blockType, blockData=0):
         self.drawVertices(self.getLine(x1, y1, z1, x2, y2, z2), blockType, blockData)
     
     # returns points on a line
@@ -322,7 +322,7 @@ class MinecraftCannon:
         
         return minecraft.Vec3(x, y, z)
         
-    def drawGunInMC(self, blockType, blockData=None):
+    def drawGunInMC(self, blockType, blockData=0):
         x, y, z = findPointOnSphere(self.baseOfGun.x, self.baseOfGun.y, self.baseOfGun.z,
                                     self.lenghtOfGun-1, self.direction, self.angle)
         self.mcDrawing.drawLine(self.baseOfGun.x, self.baseOfGun.y, self.baseOfGun.z,
