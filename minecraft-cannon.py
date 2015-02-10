@@ -238,7 +238,7 @@ class MinecraftBullet:
         self.draw()
         
     def draw(self):
-        self.mcDrawing.drawPoint3d(self.drawPos.x, self.drawPos.y, self.drawPos.z, block.GLOWING_OBSIDIAN)
+        self.mcDrawing.drawPoint3d(self.drawPos.x, self.drawPos.y, self.drawPos.z, block.TNT)
 
     def clear(self):
         self.mcDrawing.drawPoint3d(self.drawPos.x, self.drawPos.y, self.drawPos.z, block.AIR)
